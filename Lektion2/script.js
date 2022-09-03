@@ -6,12 +6,13 @@ let matrix = [
     [0,0,1,5,0,0,1,0],
     [1,0,1,0,2,1,0,4]
     ];
+
 function getRandomMatrix(h,w){
     matrix = []
     for (let index = 0; index < h; index++) {
         mati = []
         for (let index = 0; index < w; index++) {
-            mati.push(Math.round(random(0,5)));
+            mati.push(Math.round(random(0,2)))
             
         }
 
@@ -26,7 +27,7 @@ function getRandomMatrix(h,w){
     console.log(matrix)
     return matrix
 }
-let side = 100;
+let side = 10;
 
 //Lebewesen
 
@@ -36,7 +37,7 @@ let hyänenArr = [];
 let pilarray = [];
 let humanarr = [];
 function setup(){
-    // matrix = getRandomMatrix(20,20)
+    matrix = getRandomMatrix(100,100)
     createCanvas((matrix[0].length)*side+1, (matrix.length)*side+1);
     background("#acacac")
     frameRate(1);

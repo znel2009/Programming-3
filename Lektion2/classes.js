@@ -1,4 +1,5 @@
-class Grass{
+// Superclass 
+class LivingCreature{
     constructor(x,y){
         //Pos
         this.x = x;
@@ -29,6 +30,10 @@ class Grass{
         }
         return found;
     }
+}
+
+class Grass extends LivingCreature{
+
     //Verhalten
 
     //Methode fürs Vermehren
@@ -52,8 +57,9 @@ class Grass{
 
     }
 }
-class Grazer{
+class Grazer extends LivingCreature{
     constructor(x,y){
+        super(x,y)    
         this.x = x
         this.y = y
         this.energy = 8;
@@ -68,20 +74,9 @@ class Grazer{
             [this.x    , this.y +1],
             [this.x + 1, this.y +1]
         ];
+        
     }
-    chooseCell(character){
-        let found = [];
-        for(let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                if(matrix[y][x] == character){
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
-    }
+    
     multi(){
         if (this.eaten >= 5){
         let cells = this.chooseCell(0);
@@ -166,8 +161,9 @@ class Grazer{
         ];
     }
 }
-class Hyänen{
+class Hyänen extends LivingCreature{
     constructor(x,y){
+        super(x,y)    
         this.x = x
         this.y = y
         this.energy = 10;
@@ -182,19 +178,6 @@ class Hyänen{
             [this.x    , this.y +1],
             [this.x + 1, this.y +1]
         ];
-    }
-    chooseCell(character){
-        let found = [];
-        for(let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                if(matrix[y][x] == character){
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
     }
     eat(){
         this.energy--
@@ -284,8 +267,9 @@ class Hyänen{
         ];
     }
 }
-class Pilz{
+class Pilz extends LivingCreature{
     constructor(x,y){
+        super(x,y)    
         this.x = x;
         this.y = y;
         this.directions = [
@@ -300,19 +284,6 @@ class Pilz{
         ];
         this.energy = 9;
         
-    }
-    chooseCell(character){
-        let found = [];
-        for(let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                if(matrix[y][x] == character){
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
     }
     checkforanimal(){
         if(this.energy <= 0){
@@ -390,8 +361,9 @@ class Pilz{
         ];
     }
 }
-class Mensch{
+class Mensch extends LivingCreature{
     constructor(x,y){
+        super(x,y)    
         this.x = x
         this.y = y
         this.energy = 12;
@@ -406,19 +378,6 @@ class Mensch{
             [this.x    , this.y +1],
             [this.x + 1, this.y +1]
         ];
-    }
-    chooseCell(character){
-        let found = [];
-        for(let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if(x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-                if(matrix[y][x] == character){
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
     }
     updateVision(){
         this.directions = [
