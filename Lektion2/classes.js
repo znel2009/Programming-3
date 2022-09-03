@@ -91,18 +91,18 @@ class Grazer extends LivingCreature{
     
     multi(){
         if (this.eaten >= 5){
-        let cells = this.chooseCell(0);
-        if(cells.length > 0){
-            let choosen = random(cells)
-            this.newx = choosen[0]
-            this.newy = choosen[1]
-            let grazerObj = new Grazer(this.newx, this.newy);
+            let cells = this.chooseCell(0);
+            if(cells.length > 0){
+                let choosen = random(cells)
+                this.newx = choosen[0]
+                this.newy = choosen[1]
+                let grazerObj = new Grazer(this.newx, this.newy);
                 // grassOb in Liste speichern
                 grazerArr.push(grazerObj)
-            matrix[this.newy ][this.newx ] = 2
-            this.eaten = 0
+                matrix[this.newy ][this.newx ] = 2
+                this.eaten = 0
+            }
         }
-    }
     }
     eat(){
         this.updateVision()

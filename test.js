@@ -7,4 +7,8 @@ let obj = {
 
 console.log(obj)
 
-obj.sayHello()
+test = ["test"]
+
+for(i in test){
+    console.log(typeof i)
+}
