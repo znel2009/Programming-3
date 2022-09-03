@@ -121,23 +121,23 @@ function draw() {
         }
     }
     for (i in grassArr) {
-        let Ob = grassArr[i]
-        Ob.multi()
+        let gras = grassArr[i]
+        gras.multi()
     }
     for (i in grazerArr) {
-        ga = grazerArr[i]
-        ga.eat()
+        grazer = grazerArr[i]
+        grazer.eat()
     }
     for (i in hyänenArr) {
-        ga = hyänenArr[i]
-        ga.eat()
+        hyäne = hyänenArr[i]
+        hyäne.eat()
     }
     for (i in pilarray) {
-        p = pilarray[i]
-        p.checkforanimal()
+        pilz = pilarray[i]
+        pilz.checkforanimal()
     }
     for (i in humanarr) {
-        h = humanarr[i]
-        h.eat()
+        human = humanarr[i]
+        human.eat()
     }
 }
