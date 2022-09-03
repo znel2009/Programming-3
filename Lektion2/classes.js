@@ -30,6 +30,18 @@ class LivingCreature{
         }
         return found;
     }
+    updateVision(){
+        this.directions = [
+            [this.x - 1, this.y -1],
+            [this.x    , this.y -1],
+            [this.x + 1, this.y -1],
+            [this.x - 1, this.y   ],
+            [this.x + 1, this.y   ],
+            [this.x - 1, this.y +1],
+            [this.x    , this.y +1],
+            [this.x + 1, this.y +1]
+        ];
+    }
 }
 
 class Grass extends LivingCreature{
@@ -148,18 +160,7 @@ class Grazer extends LivingCreature{
             }
         }
     }
-    updateVision(){
-        this.directions = [
-            [this.x - 1, this.y -1],
-            [this.x    , this.y -1],
-            [this.x + 1, this.y -1],
-            [this.x - 1, this.y   ],
-            [this.x + 1, this.y   ],
-            [this.x - 1, this.y +1],
-            [this.x    , this.y +1],
-            [this.x + 1, this.y +1]
-        ];
-    }
+
 }
 class Hyänen extends LivingCreature{
     constructor(x,y){
@@ -254,18 +255,7 @@ class Hyänen extends LivingCreature{
         }
     }
 
-    updateVision(){
-        this.directions = [
-            [this.x - 1, this.y -1],
-            [this.x    , this.y -1],
-            [this.x + 1, this.y -1],
-            [this.x - 1, this.y   ],
-            [this.x + 1, this.y   ],
-            [this.x - 1, this.y +1],
-            [this.x    , this.y +1],
-            [this.x + 1, this.y +1]
-        ];
-    }
+
 }
 class Pilz extends LivingCreature{
     constructor(x,y){
@@ -348,18 +338,7 @@ class Pilz extends LivingCreature{
 
 
 
-    updateVision(){
-        this.directions = [
-            [this.x - 1, this.y -1],
-            [this.x    , this.y -1],
-            [this.x + 1, this.y -1],
-            [this.x - 1, this.y   ],
-            [this.x + 1, this.y   ],
-            [this.x - 1, this.y +1],
-            [this.x    , this.y +1],
-            [this.x + 1, this.y +1]
-        ];
-    }
+
 }
 class Mensch extends LivingCreature{
     constructor(x,y){
@@ -379,18 +358,7 @@ class Mensch extends LivingCreature{
             [this.x + 1, this.y +1]
         ];
     }
-    updateVision(){
-        this.directions = [
-            [this.x - 1, this.y -1],
-            [this.x    , this.y -1],
-            [this.x + 1, this.y -1],
-            [this.x - 1, this.y   ],
-            [this.x + 1, this.y   ],
-            [this.x - 1, this.y +1],
-            [this.x    , this.y +1],
-            [this.x + 1, this.y +1]
-        ];
-    }
+
     die(){
         matrix[this.y][this.x] = 0;
         for(i in humanarr){
