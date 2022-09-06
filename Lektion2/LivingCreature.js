@@ -1,4 +1,4 @@
-// Superclass of all animals and grass
+// Superclass of all animals and grass 
 class LivingCreature {
     constructor(x, y) {
         //Pos
