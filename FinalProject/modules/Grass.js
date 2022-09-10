@@ -1,3 +1,5 @@
+const LivingCreature = require("./LivingCreature")
+
 class Grass extends LivingCreature {
 
     //Verhalten
@@ -24,3 +26,4 @@ class Grass extends LivingCreature {
     }
 }
 
+module.exports = Grass

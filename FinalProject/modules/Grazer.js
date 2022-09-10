@@ -1,3 +1,5 @@
+const LivingCreature = require("./LivingCreature")
+
 class Grazer extends LivingCreature {
     constructor(x, y) {
         super(x, y)
@@ -92,3 +94,4 @@ class Grazer extends LivingCreature {
 
 }
 
+module.exports = Grazer

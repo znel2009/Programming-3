@@ -16,10 +16,6 @@ function getRandomMatrix(h, w) {
 
         }
 
-
-
-
-
         matrix.push(mati)
 
 

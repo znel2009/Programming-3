@@ -1,6 +1,14 @@
 const express = require("express")
 const app = express()
 
+// Require all modules 
+const LivingCreature = require("./modules/LivingCreature")
+const Grass = require("./modules/Grass")
+const Grazer = require("./modules/Grazer")
+const Hyänen = require("./modules/Hyänen")
+const Mensch = require("./modules/Mensch")
+const Pilze = require("./modules/Pilze")
+
 // Server variables
 const PORT = 3000
 app.use(express.static('./public'))

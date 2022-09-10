@@ -43,3 +43,4 @@ class LivingCreature {
         ]
     }
 }
+module.exports = LivingCreature
