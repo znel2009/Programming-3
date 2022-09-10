@@ -10,5 +10,5 @@ console.log(obj)
 test = ["test"]
 
 for(i in test){
-    console.log(typeof i)
+    console.log("Type:" ,typeof i)
 }
