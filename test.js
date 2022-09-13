@@ -4,7 +4,7 @@ let obj = {
         console.log("hello", this.first_name)
     }
 }
-// log obj
+
 console.log(obj)
 
 test = ["test"]
