@@ -11,7 +11,7 @@ class Grass extends LivingCreature {
             // Auswahl eines Felds
             let fields = this.chooseCell(0)
             if (fields.length > 0) {
-                let powNewGrassObj = random(fields)
+                let powNewGrassObj = this.random(fields)
                 let newx = powNewGrassObj[0]
                 let newy = powNewGrassObj[1]
                 let grassObj = new Grass(newx, newy)

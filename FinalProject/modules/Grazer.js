@@ -24,7 +24,7 @@ class Grazer extends LivingCreature {
         if (this.eaten >= 5) {
             let cells = this.chooseCell(0)
             if (cells.length > 0) {
-                let choosen = random(cells)
+                let choosen = this.random(cells)
                 this.newx = choosen[0]
                 this.newy = choosen[1]
                 let grazerObj = new Grazer(this.newx, this.newy)
@@ -39,7 +39,7 @@ class Grazer extends LivingCreature {
         this.updateVision()
         let cells = this.chooseCell(1)
         if (cells.length > 0) {
-            let choosen = random(cells)
+            let choosen = this.random(cells)
             this.newx = choosen[0]
             this.newy = choosen[1]
             matrix[this.newy][this.newx] = 2
@@ -67,7 +67,7 @@ class Grazer extends LivingCreature {
         this.newlist = this.chooseCell(0)
 
         if (this.newlist.length > 0) {
-            this.chosen = random(this.newlist)
+            this.chosen = this.random(this.newlist)
             this.newx = this.chosen[0]
             this.newy = this.chosen[1]
             matrix[this.newy][this.newx] = 2

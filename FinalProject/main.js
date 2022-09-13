@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 
-let matrix = [
+matrix = [
     [1, 1, 0, 1, 1, 0, 0, 1],
     [0, 1, 0, 1, 1, 0, 1, 0],
     [0, 1, 0, 3, 2, 0, 1, 1],
@@ -67,11 +67,11 @@ function getRandomMatrix(h, w) {
 
 
 
-let grassArr = []
-let grazerArr = []
-let hyänenArr = []
-let pilarray = []
-let humanarr = []
+grassArr = []
+grazerArr = []
+hyänenArr = []
+pilarray = []
+humanarr = []
 
 // Setup
 

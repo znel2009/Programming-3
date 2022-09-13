@@ -34,7 +34,7 @@ class Mensch extends LivingCreature {
         this.newlist = this.chooseCell(0)
 
         if (this.newlist.length > 0) {
-            this.chosen = random(this.newlist)
+            this.chosen = this.random(this.newlist)
             this.newx = this.chosen[0]
             this.newy = this.chosen[1]
             matrix[this.newy][this.newx] = 5
@@ -52,7 +52,7 @@ class Mensch extends LivingCreature {
         this.updateVision()
         let cells = this.chooseCell(3)
         if (cells.length > 0) {
-            let choosen = random(cells)
+            let choosen = this.random(cells)
             this.newx = choosen[0]
             this.newy = choosen[1]
             matrix[this.newy][this.newx] = 5
@@ -78,7 +78,7 @@ class Mensch extends LivingCreature {
         if (this.eaten == 8) {
             let cells = this.chooseCell(0)
             if (cells.length > 0) {
-                let choosen = random(cells)
+                let choosen = this.random(cells)
                 this.newx = choosen[0]
                 this.newy = choosen[1]
                 let hyObj = new Mensch(this.newx, this.newy)

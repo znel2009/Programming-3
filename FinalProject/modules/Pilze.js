@@ -32,7 +32,7 @@ class Pilz extends LivingCreature {
                 }
             }
             if (allanimals.length > 0) {
-                let chosen = random(allanimals)
+                let chosen = this.random(allanimals)
                 this.newx = chosen[0]
                 this.newy = chosen[1]
                 if (matrix[this.newy][this.newx] == 2) {

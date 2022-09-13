@@ -42,5 +42,8 @@ class LivingCreature {
             [this.x + 1, this.y + 1]
         ]
     }
+    random(list){
+        return list[Math.floor(Math.random() * list.length)]
+    }
 }
 module.exports = LivingCreature
