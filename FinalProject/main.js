@@ -1,15 +1,20 @@
 const express = require("express")
 const app = express()
 
+// matrix = [
+//     [1, 1, 0, 1, 1, 0, 0, 1],
+//     [0, 1, 0, 1, 1, 0, 1, 0],
+//     [0, 1, 0, 3, 2, 0, 1, 1],
+//     [0, 0, 1, 0, 1, 0, 1, 1],
+//     [0, 0, 1, 5, 0, 0, 1, 0],
+//     [1, 0, 1, 0, 2, 1, 0, 4]
+// ]
 matrix = [
-    [1, 1, 0, 1, 1, 0, 0, 1],
-    [0, 1, 0, 1, 1, 0, 1, 0],
-    [0, 1, 0, 3, 2, 0, 1, 1],
-    [0, 0, 1, 0, 1, 0, 1, 1],
-    [0, 0, 1, 5, 0, 0, 1, 0],
-    [1, 0, 1, 0, 2, 1, 0, 4]
-]
-
+        [2, 1, 1, 1, 1, 1, 2],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1],
+    ]   
 // Require all modules 
 const LivingCreature = require("./modules/LivingCreature")
 const Grass = require("./modules/Grass")
@@ -32,17 +37,17 @@ app.get("/name/:name", (req, res) => {
     res.send(name)
 })
 
-app.get("/google/:search", (req,res) => {
+app.get("/google/:search", (req, res) => {
     let search = req.params.search
     res.status(200).redirect(`http://google.com/search?q=${search}`)
 
 })
 
-app.get("/*", (req,res) => {
+app.get("/*", (req, res) => {
     res.status(404).send("ERROR 404")
 })
 
-app.listen(PORT , function(){
+app.listen(PORT, function () {
     console.log(`Listening to ${PORT}`)
 })
 
@@ -115,11 +120,11 @@ for (let y = 0; y < matrix.length; y++) {
         }
     }
 }
-function updateCreatures(){
+function updateCreatures() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
-                
+
 
             }
             else if (matrix[y][x] == 0) {
@@ -162,10 +167,6 @@ function updateCreatures(){
     console.log(matrix)
 }
 
-setInterval(()=>{
+setInterval(() => {
     updateCreatures()
-},100)
-setTimeout(()=>{
-    clearMatrix()
 }, 1000)
-// Matrix is not defined 

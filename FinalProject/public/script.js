@@ -1,12 +1,12 @@
-let matrix = [
-    [1, 1, 0, 1, 1, 0, 0, 1],
-    [0, 1, 0, 1, 1, 0, 1, 0],
-    [0, 1, 0, 3, 2, 0, 1, 1],
-    [0, 0, 1, 0, 1, 0, 1, 1],
-    [0, 0, 1, 5, 0, 0, 1, 0],
-    [1, 0, 1, 0, 2, 1, 0, 4]
-]
-
+// let matrix = [
+//     [1, 1, 0, 1, 1, 0, 0, 1],
+//     [0, 1, 0, 1, 1, 0, 1, 0],
+//     [0, 1, 0, 3, 2, 0, 1, 1],
+//     [0, 0, 1, 0, 1, 0, 1, 1],
+//     [0, 0, 1, 5, 0, 0, 1, 0],
+//     [1, 0, 1, 0, 2, 1, 0, 4]
+// ]
+matrix = [[1,1,1,1,1,1,2],[1,1,1,1,1,1,2]]
 function getRandomMatrix(h, w) {
     matrix = []
     for (let index = 0; index < h; index++) {
@@ -33,7 +33,7 @@ let hyänenArr = []
 let pilarray = []
 let humanarr = []
 function setup() {
-    matrix = getRandomMatrix(5, 5)
+    // matrix = getRandomMatrix(5, 5)
     createCanvas((matrix[0].length) * side + 1, (matrix.length) * side + 1)
     background("#acacac")
     frameRate(1)

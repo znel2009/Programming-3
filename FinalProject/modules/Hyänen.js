@@ -1,8 +1,9 @@
-const LivingCreature = require("./LivingCreature")
+const Animal = require("./Animal")
 
-class Hyänen extends LivingCreature {
+class Hyänen extends Animal {
     constructor(x, y) {
         super(x, y)
+        this.type = "hyäne"
         this.x = x
         this.y = y
         this.energy = 10
@@ -47,13 +48,16 @@ class Hyänen extends LivingCreature {
     }
 
     multi() {
-        if (this.eaten == 4) {
+
+        if (this.eaten >= 4  && this.SameGenderInArea !== []) {
             let cells = this.chooseCell(0)
             if (cells.length > 0) {
                 let choosen = this.random(cells)
                 this.newx = choosen[0]
                 this.newy = choosen[1]
                 let hyObj = new Hyänen(this.newx, this.newy)
+                // Define Gender
+                hyObj.gender = this.randomGender()
                 // grassOb in Liste speichern
                 hyänenArr.push(hyObj)
                 matrix[this.newy][this.newx] = 3

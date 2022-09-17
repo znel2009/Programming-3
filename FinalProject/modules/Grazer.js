@@ -1,10 +1,11 @@
-const LivingCreature = require("./LivingCreature")
+const Animal = require("./Animal")
 
-class Grazer extends LivingCreature {
+class Grazer extends Animal {
     constructor(x, y) {
         super(x, y)
         this.x = x
         this.y = y
+        this.type = "grazer"
         this.energy = 8
         this.eaten = 0
         this.directions = [
@@ -21,13 +22,17 @@ class Grazer extends LivingCreature {
     }
 
     multi() {
-        if (this.eaten >= 5) {
+
+        if (this.eaten >= 5 && this.SameGenderInArea().length !== 0) {
+            console.log("GENDER:",this.SameGenderInArea())
+
             let cells = this.chooseCell(0)
             if (cells.length > 0) {
                 let choosen = this.random(cells)
                 this.newx = choosen[0]
                 this.newy = choosen[1]
                 let grazerObj = new Grazer(this.newx, this.newy)
+                grazerObj.gender = this.randomGender()
                 // grassOb in Liste speichern
                 grazerArr.push(grazerObj)
                 matrix[this.newy][this.newx] = 2

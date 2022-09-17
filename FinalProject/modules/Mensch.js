@@ -1,10 +1,11 @@
-const LivingCreature = require("./LivingCreature")
+const Animal = require("./Animal")
 
-class Mensch extends LivingCreature {
+class Mensch extends Animal {
     constructor(x, y) {
         super(x, y)
         this.x = x
         this.y = y
+        this.type = "mensch"
         this.energy = 12
         this.eaten = 0
         this.directions = [
@@ -75,13 +76,14 @@ class Mensch extends LivingCreature {
         }
     }
     multi() {
-        if (this.eaten == 8) {
+        if (this.eaten >= 8 && this.SameGenderInArea != []) {
             let cells = this.chooseCell(0)
             if (cells.length > 0) {
                 let choosen = this.random(cells)
                 this.newx = choosen[0]
                 this.newy = choosen[1]
                 let hyObj = new Mensch(this.newx, this.newy)
+                hyObj.gender = this.randomGender()
                 // grassOb in Liste speichern
                 humanarr.push(hyObj)
                 matrix[this.newy][this.newx] = 5
