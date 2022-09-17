@@ -17,6 +17,7 @@ const Grazer = require("./modules/Grazer")
 const Hyänen = require("./modules/Hyänen")
 const Mensch = require("./modules/Mensch")
 const Pilz = require("./modules/Pilze")
+const { clearMatrix } = require("./modules/matrix_functions")
 
 // Server variables
 const PORT = 3000
@@ -164,4 +165,7 @@ function updateCreatures(){
 setInterval(()=>{
     updateCreatures()
 },100)
+setTimeout(()=>{
+    clearMatrix()
+}, 1000)
 // Matrix is not defined 
