@@ -1,6 +1,8 @@
-const express = require("express")
+const http = require('http')
+const express = require('express');
 const app = express()
-
+const server = http.createServer(app);
+const io = require('socket.io')(server);
 // matrix = [
 //     [1, 1, 0, 1, 1, 0, 0, 1],
 //     [0, 1, 0, 1, 1, 0, 1, 0],
@@ -10,11 +12,11 @@ const app = express()
 //     [1, 0, 1, 0, 2, 1, 0, 4]
 // ]
 matrix = [
-        [2, 1, 1, 1, 1, 1, 2],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-    ]   
+    [2, 1, 1, 1, 1, 1, 2],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+]
 // Require all modules 
 const LivingCreature = require("./modules/LivingCreature")
 const Grass = require("./modules/Grass")
@@ -22,7 +24,8 @@ const Grazer = require("./modules/Grazer")
 const Hyänen = require("./modules/Hyänen")
 const Mensch = require("./modules/Mensch")
 const Pilz = require("./modules/Pilze")
-const { clearMatrix } = require("./modules/matrix_functions")
+const Mamut = require("./modules/Mamut")
+const { clearMatrix, createRandomMatrix } = require("./modules/matrix_functions")
 
 // Server variables
 const PORT = 3000
@@ -47,8 +50,8 @@ app.get("/*", (req, res) => {
     res.status(404).send("ERROR 404")
 })
 
-app.listen(PORT, function () {
-    console.log(`Listening to ${PORT}`)
+server.listen(PORT, () => {
+    console.log("LISTENING")
 })
 
 // Game logic part
@@ -58,17 +61,17 @@ function getRandomMatrix(h, w) {
     for (let index = 0; index < h; index++) {
         mati = []
         for (let index = 0; index < w; index++) {
-            mati.push(Math.round(Math.random(0, 2)))
+            mati.push(Math.round(Math.random()*6))
 
         }
         matrix.push(mati)
 
 
     }
-    console.log(matrix)
+
     return matrix
 }
-
+matrix = getRandomMatrix(20, 20)
 
 
 
@@ -78,6 +81,7 @@ grazerArr = []
 hyänenArr = []
 pilarray = []
 humanarr = []
+mamutArr = []
 
 // Setup
 
@@ -100,22 +104,25 @@ for (let y = 0; y < matrix.length; y++) {
         else if (matrix[y][x] == 3) {
             let hyänenobj = new Hyänen(x, y)
 
-            //füge das Gras Object dem grass-Array
             hyänenArr.push(hyänenobj)
 
         }
         else if (matrix[y][x] == 4) {
             let pil = new Pilz(x, y)
 
-            //füge das Gras Object dem grass-Array
             pilarray.push(pil)
 
         }
         else if (matrix[y][x] == 5) {
             let human = new Mensch(x, y)
 
-            //füge das Gras Object dem grass-Array
             humanarr.push(human)
+
+        }
+        else if (matrix[y][x] == 6) {
+            let mamut = new Mamut(x, y)
+
+            mamutArr.push(mamut)
 
         }
     }
@@ -164,9 +171,29 @@ function updateCreatures() {
         let human = humanarr[i]
         human.eat()
     }
-    console.log(matrix)
+    for (i in mamutArr) {
+        let mamut = mamutArr[i]
+        mamut.eat()
+    }
+
 }
 
 setInterval(() => {
     updateCreatures()
+    console.log("send")
+    io.sockets.emit("matrix", matrix)
 }, 1000)
+
+io.on('connection', function (socket) {
+    console.log("Client connected")
+    socket.on("clear_matrix", function (socket) {
+
+        clearMatrix()
+        console.log("cleared")
+    })
+    socket.on("create_random_matrix", function (socket) {
+
+        createRandomMatrix()
+        console.log("new Matrix")
+    })
+});

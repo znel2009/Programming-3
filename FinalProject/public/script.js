@@ -6,7 +6,7 @@
 //     [0, 0, 1, 5, 0, 0, 1, 0],
 //     [1, 0, 1, 0, 2, 1, 0, 4]
 // ]
-matrix = [[1,1,1,1,1,1,2],[1,1,1,1,1,1,2]]
+matrix = []
 function getRandomMatrix(h, w) {
     matrix = []
     for (let index = 0; index < h; index++) {
@@ -27,14 +27,9 @@ let side = 10
 
 //Lebewesen
 
-let grassArr = []
-let grazerArr = []
-let hyänenArr = []
-let pilarray = []
-let humanarr = []
 function setup() {
     // matrix = getRandomMatrix(5, 5)
-    createCanvas((matrix[0].length) * side + 1, (matrix.length) * side + 1)
+    createCanvas(200,200)
     background("#acacac")
     frameRate(1)
 
@@ -44,49 +39,52 @@ function setup() {
 
     // grassObj.multi();
     // Lebewesen 
-    for (let y = 0; y < matrix.length; y++) {
-        for (let x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 1) {
-                let grassObj = new Grass(x, y)
+    // for (let y = 0; y < matrix.length; y++) {
+    //     for (let x = 0; x < matrix[y].length; x++) {
+    //         if (matrix[y][x] == 1) {
+    //             let grassObj = new Grass(x, y)
 
-                //füge das Gras Object dem grass-Array
-                grassArr.push(grassObj)
+    //             //füge das Gras Object dem grass-Array
+    //             grassArr.push(grassObj)
 
-            }
-            else if (matrix[y][x] == 2) {
-                let grazerObj = new Grazer(x, y)
+    //         }
+    //         else if (matrix[y][x] == 2) {
+    //             let grazerObj = new Grazer(x, y)
 
-                //füge das Gras Object dem grass-Array
-                grazerArr.push(grazerObj)
+    //             //füge das Gras Object dem grass-Array
+    //             grazerArr.push(grazerObj)
 
-            }
-            else if (matrix[y][x] == 3) {
-                let hyänenobj = new Hyänen(x, y)
+    //         }
+    //         else if (matrix[y][x] == 3) {
+    //             let hyänenobj = new Hyänen(x, y)
 
-                //füge das Gras Object dem grass-Array
-                hyänenArr.push(hyänenobj)
+    //             //füge das Gras Object dem grass-Array
+    //             hyänenArr.push(hyänenobj)
 
-            }
-            else if (matrix[y][x] == 4) {
-                let pil = new Pilz(x, y)
+    //         }
+    //         else if (matrix[y][x] == 4) {
+    //             let pil = new Pilz(x, y)
 
-                //füge das Gras Object dem grass-Array
-                pilarray.push(pil)
+    //             //füge das Gras Object dem grass-Array
+    //             pilarray.push(pil)
 
-            }
-            else if (matrix[y][x] == 5) {
-                let human = new Mensch(x, y)
+    //         }
+    //         else if (matrix[y][x] == 5) {
+    //             let human = new Mensch(x, y)
 
-                //füge das Gras Object dem grass-Array
-                humanarr.push(human)
+    //             //füge das Gras Object dem grass-Array
+    //             humanarr.push(human)
 
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 }
 
 
 function draw() {
+    if (matrix.length == 0){
+        return
+    }
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
@@ -114,28 +112,34 @@ function draw() {
                 fill("#ff8661")
                 rect(x * side, y * side, side, side)
             }
+            else if (matrix[y][x] == 6) {
+                fill("#a52a2a")
+                rect(x * side, y * side, side, side)
+            }
         }
     }
-    for (i in grassArr) {
-        let gras = grassArr[i]
-        gras.multi()
-    }
-    for (i in grazerArr) {
-        grazer = grazerArr[i]
-        grazer.eat()
-    }
-    for (i in hyänenArr) {
-        hyäne = hyänenArr[i]
-        hyäne.eat()
-    }
-    for (i in pilarray) {
-        pilz = pilarray[i]
-        pilz.checkforanimal()
-    }
-    for (i in humanarr) {
-        human = humanarr[i]
-        human.eat()
-    }
-    console.log(matrix)
+
 }
 
+function main() {
+    socket = io();
+
+    function handleMessage(msg) {
+        matrix = msg
+    }
+
+    socket.on('matrix', handleMessage);
+} // main closing bracket
+window.onload = main;
+
+const clear_button = document.getElementById("btn_clear")
+
+clear_button.onclick = function() {
+    socket.emit("clear_matrix")
+}
+
+const btn_random_matrix = document.getElementById("btn_random_matrix")
+
+btn_random_matrix.onclick = function() {
+    socket.emit("create_random_matrix")
+}

@@ -46,7 +46,7 @@ class Animal {
         return list[Math.floor(Math.random() * list.length)]
     }
     randomGender(){
-        if ( Math.round(Math.random(0,1)) == 1) {
+        if ( Math.round(Math.random()*1) == 1) {
             return "man"
         }
         else{
@@ -67,7 +67,9 @@ class Animal {
         else if (type == "grazer"){
             type_array = grazerArr
         }
-
+        else if (type == "mamut"){
+            type_array = mamutArr
+        }
         for( i in type_array){
             var obj = type_array[i]
             console.log(obj)
