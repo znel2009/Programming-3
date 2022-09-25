@@ -79,7 +79,7 @@ class Grazer extends Animal {
             matrix[this.y][this.x] = 0
             this.x = this.newx
             this.y = this.newy
-            this.energy--
+            this.energy -= energy_loss
         }
         if (this.energy <= 0) {
             this.die()

@@ -8,7 +8,7 @@ class Mamut extends Animal {
         this.eaten = 0
     }
     eat() {
-        this.energy -= 2
+        this.energy -= energy_loss + 1
         this.updateVision()
         let cells = this.chooseCell(5)
         if (cells.length > 0) {
@@ -75,7 +75,7 @@ class Mamut extends Animal {
 
 
     die() {
-        console.log("Mamut died")
+
         matrix[this.y][this.x] = 0
         for (i in mamutArr) {
             if (this.x == mamutArr[i].x && this.y == mamutArr[i].y) {

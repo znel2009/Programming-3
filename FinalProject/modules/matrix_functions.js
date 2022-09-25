@@ -81,6 +81,99 @@ function createRandomMatrix(){
         }
     }
 }
+function meteor_crash(msg){
+
+    let x = msg.x
+    let y = msg.y
+
+    var directions =  [
+        [x-1,y-1],
+        [x,y-1],
+        [x+1,y-1],
+        [x-1,y],
+        [x,y],
+        [x+1,y],
+        [x-1,y+1],
+        [x,y+1],
+        [x+1,y+1]
+    ]
+
+
+
+    for (i in directions){
+        i = directions[i]
+
+
+        for(k in grassArr){
+
+            let grass = grassArr[k]
+
+            if(grass.x == i[0] && grass.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    grassArr.pop(k)
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        for(k in grazerArr){
+
+            let grazer = grazerArr[k]
+            if(grazer.x == i[0] && grazer.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    grazerArr.pop(k)
+
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        for(k in hyänenArr){
+
+            let hyäne = hyänenArr[k]
+            if(hyäne.x == i[0] && hyäne.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    hyänenArr.pop(k)
+
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        for(k in humanarr){
+
+            let human = humanarr[k]
+            if(human.x == i[0] && human.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    humanarr.pop(k)
+  
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        for(k in mamutArr){
+
+            let mamut = mamutArr[k]
+            if(mamut.x == i[0] && mamut.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    mamutArr.pop(k)
+
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        for(k in pilarray){
+
+            let pilz = pilarray[k]
+            if(pilz.x == i[0] && pilz.y == i[1]){
+                if(i[0] >= 0 && [1] >= 0){
+                    pilarray.pop(k)
+
+                    matrix[i[0]][i[1]] = 0
+                }
+            }
+        }
+        
+    }
+    
+}
 
 module.exports = {
     clearMatrix : () => {
@@ -88,5 +181,8 @@ module.exports = {
     },
     createRandomMatrix: () => {
         return createRandomMatrix()
+    },
+    meteor_crash: (msg) => {
+        return meteor_crash(msg)
     }
 }

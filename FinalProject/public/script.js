@@ -81,6 +81,7 @@ function setup() {
 }
 
 
+
 function draw() {
     if (matrix.length == 0){
         return
@@ -88,7 +89,12 @@ function draw() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
-                fill("green")
+                if(weather_status.textContent == "Winter"){
+                    fill("white")
+                }
+                else{
+                    fill("green")
+                }
                 rect(x * side, y * side, side, side)
 
             }
@@ -120,13 +126,16 @@ function draw() {
     }
 
 }
+const weather_status = document.getElementById("weather_status")
 
 function main() {
     socket = io();
 
     function handleMessage(msg) {
-        matrix = msg
+        matrix = msg.matrix
+        weather_status.textContent = msg.weather
     }
+
 
     socket.on('matrix', handleMessage);
 } // main closing bracket
@@ -142,4 +151,13 @@ const btn_random_matrix = document.getElementById("btn_random_matrix")
 
 btn_random_matrix.onclick = function() {
     socket.emit("create_random_matrix")
+}
+
+const btn_meteor_crash = document.getElementById("btn_meteor_crash")
+
+btn_meteor_crash.onclick = function() {
+    let x = parseInt(prompt("x"))
+    let y = parseInt(prompt("y"))
+
+    socket.emit("meteor_crash", {x: x, y: y})
 }

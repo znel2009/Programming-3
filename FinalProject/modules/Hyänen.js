@@ -20,7 +20,7 @@ class Hyänen extends Animal {
         ]
     }
     eat() {
-        this.energy--
+        this.energy -= energy_loss
         this.updateVision()
         let cells = this.chooseCell(2)
         if (cells.length > 0) {

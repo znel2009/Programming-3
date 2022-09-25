@@ -56,7 +56,7 @@ class Pilz extends LivingCreature {
                 this.energy = 9
             }
             else {
-                this.energy--
+                this.energy -= energy_loss
             }
         }
 
